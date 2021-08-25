@@ -1,0 +1,3 @@
+de rung,100
+heo rung,300
+nhim,300
