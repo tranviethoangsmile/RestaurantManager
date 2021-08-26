@@ -1,0 +1,3 @@
+bia,30
+nuoc ngot,20
+nuoc loc,10
