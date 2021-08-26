@@ -1,6 +1,7 @@
 package com.codegymhueJava.working;
 
 import com.codegymhueJava.readFile.ReadFileAdmin;
+import com.codegymhueJava.readFile.ReadFileAds;
 import com.codegymhueJava.writeFIleOption.*;
 import com.codegymhueJava.Thread.Loading;
 import com.codegymhueJava.Thread.Sale;
@@ -23,8 +24,10 @@ import static com.codegymhueJava.writeFIleOption.WriteFileDoanhThu.writeToFileDo
 import static com.codegymhueJava.service.CheckInput.checkInteger;
 
     public class GoHome {
+//        List ads
+    static List <String> quangCao = new ArrayList<String>();
 //        List doanh thu
-        static List <DoanhThu> listDoanhThu = new ArrayList<DoanhThu>();
+    static List <DoanhThu> listDoanhThu = new ArrayList<DoanhThu>();
 //    DANH SÁCH MÓN ĂN VÀ ĐỒ UỐNG.
     static List <MonHaiSan> listHaiSan = new ArrayList<MonHaiSan>();
     static List <MonKhaiVi> monKhaiVi = new ArrayList<MonKhaiVi>();
@@ -41,9 +44,17 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     //    Thread
     static ThreadGoodBye threadGoodBye = new ThreadGoodBye();
     static Loading loading = new Loading();
-    static Sale sale = new Sale();
+    static Sale sale;
 
-    //    màu chữ
+        static {
+            try {
+                sale = new Sale();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //    màu chữ
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
@@ -70,6 +81,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     static WriteFileAdmin writeFileAdmin = new WriteFileAdmin();
 
     static WriteFileTable writeFileTable = new WriteFileTable();
+    static WriteFileAds writeFileAds = new WriteFileAds();
 
     //    List
     static List<FoodsObj> listFoods = new ArrayList<FoodsObj>();
@@ -564,12 +576,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     4. HIỂN THỊ TẤT CẢ CÁC MÓN      ||");
         System.out.println("||     5. THIẾT LẬP BÀN                ||");
         System.out.println("||     6. QUẢN LÝ DANH SÁCH NHÂN VIÊN  ||");
+        System.out.println("||     7. THIẾT LẬP QUẢNG CÁO          ||");
         System.out.println("||                           0. _exit_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int select;
         do {
             System.out.print(ANSI_YELLOW + "select: ");
-             select = (int) checkInteger(0,6);
+             select = (int) checkInteger(0,7);
             switch (select)
             {
                 case 0 :
@@ -634,9 +647,26 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 case 6 :
                     danhSachNhanVien();
                     break;
+                case 7 :
+                    thietLapQuangCao();
+                    break;
+
             }
         }while(select != 0);
     }
+
+        private static void thietLapQuangCao() throws FileNotFoundException, InterruptedException {
+            System.out.print("số chữ:");
+            int num = scanner.nextInt();
+            for(int i = 1; i <= num; i++) {
+                System.out.print("Chữ " + i + ": ");
+                String word = check.checkString();
+                quangCao.add(word);
+                writeFileAds.writeToFileAds(quangCao);
+
+            }
+            addmin();
+        }
 
         private static void danhSachNhanVien() throws FileNotFoundException, InterruptedException {
             List <Admin> admin = readFileAdmin.readFileAdmin();

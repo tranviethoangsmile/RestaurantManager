@@ -36,9 +36,17 @@ public class Restaurant {
 
         static ThreadGoodBye threadGoodBye = new ThreadGoodBye();
         static Loading loading = new Loading();
-        static Sale sale = new Sale();
+        static Sale sale;
 
-        //    màu chữ
+    static {
+        try {
+            sale = new Sale();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //    màu chữ
         public static final String ANSI_YELLOW = "\u001B[33m";
         public static final String ANSI_BLUE = "\u001B[34m";
         public static final String ANSI_PURPLE = "\u001B[35m";
