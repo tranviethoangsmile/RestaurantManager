@@ -68,7 +68,7 @@ public class Restaurant {
 
         static int id;
         public static void chonBan () throws FileNotFoundException, InterruptedException {
-            List <Table> table = readFileTable.readFileTable();
+            List <Table> table = ReadFileTable.readFileTable();
             System.out.println(ANSI_YELLOW + "\n|||||||||||||||||||||||||||||||||||||||||");
             System.out.println("||       MỜI QUÝ KHÁCH CHỌN BÀN        ||");
             System.out.println("||-------------------------------------||");
@@ -94,7 +94,7 @@ public class Restaurant {
                     if(tb.getId() == select) {
                         id = select;
                         table.remove(select -1);
-                        writeFileTable.writeToFileTable(table);
+                        WriteFileTable.writeToFileTable(table);
                         menu ();
                     }else {
                         System.out.println(ANSI_WHITE + "Bàn đã có khách đặt, Vui lòng chọn bàn khác..xin cảm ơn" + ANSI_RESET);
@@ -150,7 +150,7 @@ public class Restaurant {
                         inHoaDon();
                         break;
                     case 8 :
-                        function.xemKhuyenMai();
+                        GoHome.xemKhuyenMai();
                         break;
 
                 }
@@ -158,7 +158,7 @@ public class Restaurant {
         }
 
         public static void menuKhaiVi() throws FileNotFoundException, InterruptedException {
-            List <MonKhaiVi> monKhaiVi = readFile.readMonKhaiVi();
+            List <MonKhaiVi> monKhaiVi = ReadFile.readMonKhaiVi();
             if (monKhaiVi.size() == 0) {
                 System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
             }else {
@@ -211,7 +211,7 @@ public class Restaurant {
         }
 
     public static void menuHaiSan () throws InterruptedException, FileNotFoundException {
-        List <MonHaiSan> monHaiSan = readFile.readMonHaiSan();
+        List <MonHaiSan> monHaiSan = ReadFile.readMonHaiSan();
         if (monHaiSan.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -264,7 +264,7 @@ public class Restaurant {
     }
 
     public static void menuNuiRung() throws InterruptedException, FileNotFoundException {
-        List <MonRung> monRung = readFile.readMonRung();
+        List <MonRung> monRung = ReadFile.readMonRung();
         if (monRung.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -317,7 +317,7 @@ public class Restaurant {
     }
 
     public static void menuLau () throws InterruptedException, FileNotFoundException {
-        List<MonLau> lau = readFile.readMonLau();
+        List<MonLau> lau = ReadFile.readMonLau();
         if (lau.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -370,7 +370,7 @@ public class Restaurant {
     }
 
     public static void menuDoUong() throws InterruptedException, FileNotFoundException {
-        List<DoUong> douong = readFile.readDoUong();
+        List<DoUong> douong = ReadFile.readDoUong();
         if (douong.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -454,7 +454,7 @@ public class Restaurant {
         System.out.println("||                                     ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
-            System.out.println("chọn: ");
+            System.out.print("chọn: ");
             int chon = (int) checkInteger(1,2);
             switch (chon) {
                 case 1 :
@@ -502,7 +502,7 @@ public class Restaurant {
                     menu();
                     break;
                 case 0 :
-                    function.begin();
+                    GoHome.begin();
                     break;
             }
         }
