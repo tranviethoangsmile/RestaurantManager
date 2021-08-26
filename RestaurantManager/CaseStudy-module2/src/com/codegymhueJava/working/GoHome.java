@@ -474,7 +474,6 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 case 8 :
                     xemKhuyenMai();
                     break;
-
             }
         }
 
