@@ -498,6 +498,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
         public static void xemKhuyenMai() throws InterruptedException, FileNotFoundException {
+//        CHẠY CHỮ KHUYẾN MÃI
             sale.start();
             sale.join();
             menu();
@@ -522,38 +523,39 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     threadGoodBye.join();
                     System.exit(0);
                 case 1 :
-                    List <Admin> admin = readFileAdmin.readFileAdmin();
-                    if(admin.size() == 0) {
-                        System.out.println("Danh sách Admin trống");
-                        begin ();
-                    }else {
+//                    ĐĂNG NHẬP
+                    List <Admin> admin = ReadFileAdmin.readFileAdmin();
+                    boolean checkName = false;
                         System.out.print("Tên: ");
                         String name = check.checkString();
                         for(Admin ad : admin) {
                             if(ad.getName().equals(name)) {
-                                System.out.println("Mật khẩu: ");
+                                checkName = true;
+                                System.out.print("Mật khẩu: ");
                                 String password = check.checkString();
-                                for(Admin adPas : admin) {
-                                    if(adPas.getPassword().equals(password)) {
-                                        System.out.println("Chào " + adPas.getName());
+                                for (Admin adPas : admin) {
+                                    if (adPas.getPassword().equals(password)) {
+                                        System.out.print("Chào " + adPas.getName());
                                         addmin();
-                                    }else {
-                                        System.out.println("Mật khẩu sai...Vui lòng kiểm tra lại");
-                                        begin ();
+                                    } else {
+                                        System.out.print("Mật khẩu sai...Vui lòng kiểm tra lại");
+                                        begin();
                                     }
                                 }
                             }else {
-                                System.out.println(name + " Không tồn tại. Vui lòng kiểm tra lại");
-                                begin ();
+                                checkName = false;
                             }
                         }
-                    }
-
+                        if(checkName == false) {
+                            System.out.println("Nhân viên " + name + " Không tồn tại");
+                        }
                     break;
                 case 2 :
+//                    CHUYỂN HƯỚNG ĐẾN CHỌN CÁCH DÙNG BỮA
                     cachDungBua();
                     break;
                 case 3 :
+//                    ĐĂNG KÍ
                     System.out.print("Nhập tên: ");
                     String adminName = check.checkString();
                     System.out.println("Mật khẩu: ");

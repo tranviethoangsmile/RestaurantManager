@@ -37,13 +37,12 @@ public class Restaurant {
         static ThreadGoodBye threadGoodBye = new ThreadGoodBye();
         static Loading loading = new Loading();
         static Sale sale;
-
-    static {
-        try {
-            sale = new Sale();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            static {
+                try {
+                    sale = new Sale();
+                } catch (FileNotFoundException e) {
+             e.printStackTrace();
+                }
     }
 
     //    màu chữ
