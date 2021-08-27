@@ -6,7 +6,16 @@ import com.codegymhueJava.Thread.ThreadWelcome;
 import java.io.FileNotFoundException;
 
 public class Main {
-    static ThreadWelcome threadWelcome = new ThreadWelcome();
+    static ThreadWelcome threadWelcome;
+
+    static {
+        try {
+            threadWelcome = new ThreadWelcome();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     static GoHome function = new GoHome();
 
 

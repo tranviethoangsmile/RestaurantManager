@@ -188,7 +188,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             for( int  i = 0; i < douong.size(); i ++) {
                 System.out.printf("\n%5s.%15s%10d",i+1,douong.get(i).getName(),douong.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectDU;
@@ -197,7 +197,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectDU = (int) checkInteger(0,3);
             switch (selectDU)
             {
@@ -242,7 +242,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             for( int  i = 0; i < lau.size(); i ++) {
                 System.out.printf("\n%5s.%15s%10d",i+1,lau.get(i).getName(),lau.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -251,7 +251,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectR = (int) checkInteger(0,3);
             switch (selectR)
             {
@@ -296,7 +296,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             for( int  i = 0; i < monRung.size(); i ++) {
                 System.out.printf("\n%5s.%15s%10d",i+1,monRung.get(i).getName(),monRung.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -305,7 +305,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectR = (int) checkInteger(0,3);
             switch (selectR)
             {
@@ -349,7 +349,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             for( int  i = 0; i < monHaiSan.size(); i ++) {
                 System.out.printf("\n%5s.%15s%10d",i+1,monHaiSan.get(i).getName(),monHaiSan.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int selectHS;
             String hai_san = "";
@@ -357,7 +357,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             int priceHS = 0;
 
             do {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 selectHS = (int) checkInteger(0,3);
                 switch (selectHS)
                 {
@@ -403,7 +403,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             for( int  i = 0; i < monKhaiVi.size(); i ++) {
                 System.out.printf("\n%5s.%15s%10d",i+1,monKhaiVi.get(i).getName(),monKhaiVi.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int selectKV;
             String khai_vi = "";
@@ -411,7 +411,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             int pricekv = 0;
 
             do {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 selectKV = (int) checkInteger(0,3);
                 switch (selectKV)
                 {
@@ -458,10 +458,10 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     6. HOÁ ĐƠN TẠM TÍNH             ||");
         System.out.println("||     7. IN HOÁ ĐƠN                   ||");
         System.out.println("||     8. XEM KHUYẾN MÃI               ||");
-        System.out.println("||                           0. _exit_ ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
-            System.out.print(ANSI_CYAN + "select: ");
+            System.out.print(ANSI_CYAN + "Chọn: ");
             int select = (int) checkInteger(0,8);
             switch (select)
             {
@@ -510,10 +510,10 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     1. ĐĂNG NHẬP                    ||");
         System.out.println("||     2. KHÁCH HÀNG                   ||");
         System.out.println("||     3. ĐĂNG KÝ                      ||");
-        System.out.println("||                           0. _exit_ ||");
+        System.out.println("||                           0. _Thoát_||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             int select = (int) checkInteger(0,3);
             switch (select)
             {
@@ -591,11 +591,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     5. THIẾT LẬP BÀN                ||");
         System.out.println("||     6. QUẢN LÝ DANH SÁCH NHÂN VIÊN  ||");
         System.out.println("||     7. THIẾT LẬP QUẢNG CÁO          ||");
-        System.out.println("||                           0. _BACK_ ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int select;
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
              select = (int) checkInteger(0,7);
             switch (select)
             {
@@ -615,11 +615,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.println("||-------------------------------------||");
                     System.out.println("||     1. PHẢI                         ||");
                     System.out.println("||     2. KHÔNG                        ||");
-                    System.out.println("||                           0. _BACK_ ||");
+                    System.out.println("||                           0. _<--<_ ||");
                     System.out.println("|||||||||||||||||||||||||||||||||||||||||");
                     int selected;
                     do {
-                        System.out.print(ANSI_YELLOW + "select: ");
+                        System.out.print(ANSI_YELLOW + "Chọn: ");
                         selected = (int) checkInteger(0,2);
                         switch (selected)
                         {
@@ -690,11 +690,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             System.out.println("||-------------------------------------||");
             System.out.println("||     1. DANH SÁCH NHÂN VIÊN          ||");
             System.out.println("||     2. XOÁ NHÂN VIÊN                ||");
-            System.out.println("||                           0. _BACK_ ||");
+            System.out.println("||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int select;
             do {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 select = (int) checkInteger(0,2);
                 switch (select)
                 {
@@ -724,11 +724,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             System.out.println("||-------------------------------------||");
             System.out.println("||     1. PHẢI                         ||");
             System.out.println("||     2. KHÔNG                        ||");
-            System.out.println("||                           0. _BACK_ ||");
+            System.out.println("||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int select;
             do {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 select = (int) checkInteger(0,2);
                 switch (select)
                 {
@@ -746,13 +746,20 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                                     System.out.println("Chào " + adPas.getName());
                                     System.out.print("Chọn nhân nv: ");
                                     int chon = scanner.nextInt();
-                                    admin.remove(chon - 1);
-                                    WriteFileAdmin.writeToFileAdmin(admin);
-                                    for(int i = 0; i < admin.size(); i ++) {
-                                        System.out.printf("%2d%10s",i + 1,admin.get(i).getName());
-                                        System.out.println("\n");
+                                    if(chon == 1 ) {
+                                        System.out.println("Bạn không thể xoá chính mình");
+                                        danhSachNhanVien();
+                                        break;
+                                    }else {
+                                        admin.remove(chon - 1);
+                                        WriteFileAdmin.writeToFileAdmin(admin);
+                                        for(int i = 0; i < admin.size(); i ++) {
+                                            System.out.printf("%2d%10s",i + 1,admin.get(i).getName());
+                                            System.out.println("\n");
+                                        }
+                                        danhSachNhanVien();
                                     }
-                                    danhSachNhanVien();
+
                                 }else {
                                     System.out.println("Mật khẩu sai...Vui lòng kiểm tra lại");
                                     begin ();
@@ -876,7 +883,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             System.out.printf("%2d.%10s%5d%10d",i+1,listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
             System.out.println("\n");
         }
-        System.out.println("||                           0. _BACK_ ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
 //        xoá món ăn trong danh sách chọn
             System.out.print("lựa chọn: ");
@@ -895,7 +902,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     3. SỬA MÓN RỪNG                 ||");
         System.out.println("||     4. SỬA MÓN LẪU                  ||");
         System.out.println("||     5. SỬA ĐỒ UỐNG                  ||");
-        System.out.println("||                           0. _BACK_ ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int option;
         do {
@@ -1002,11 +1009,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     3. THÊM MÓN RỪNG                ||");
         System.out.println("||     4. THÊM MÓN LẪU                 ||");
         System.out.println("||     5. THÊM ĐỒ UỐNG                 ||");
-        System.out.println("||                           0. _BACK_ ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int selectThemMon;
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectThemMon = (int) checkInteger(0,5);
             switch (selectThemMon)
             {
@@ -1084,10 +1091,10 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("-----------------------------------------");
         System.out.println("||     1. TẠI NHÀ HÀNG                 ||");
         System.out.println("||     2. MANG VỀ                      ||");
-        System.out.println("||                           0. _exit_ ||");
+        System.out.println("||                           0. _Thoát_||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             int select = (int) checkInteger(0,2);
             switch (select)
             {

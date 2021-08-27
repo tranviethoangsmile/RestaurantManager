@@ -4,7 +4,18 @@ public class Table {
     private int id;
     private String name;
 
+    public int count;
+
     public Table() {
+    }
+
+    public int autoID() {
+        return count++;
+    }
+
+    public Table(String name) {
+        this.id = autoID();
+        this.name = name;
     }
 
     public Table(int id, String name) {

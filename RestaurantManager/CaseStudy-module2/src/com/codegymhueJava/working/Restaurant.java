@@ -74,16 +74,16 @@ public class Restaurant {
             System.out.println("||-------------------------------------||");
             if(table.size() > 0){
                 for(Table tb : table){
-                    System.out.println("||     "+ tb.getId() +"                       " +tb.getName()+"   ||");
+                    System.out.println("||     "+ tb.getId() +"          " +tb.getName()+"                ||");
                 }
             }else {
                 System.out.println("Bàn đã được đặt hết..Xin quý khách thông cảm..");
             }
 
             System.out.println("___________                            ||");
-            System.out.println("||QUẦY    |                  0. _BACK_ ||");
+            System.out.println("||QUẦY    |                  0. _<--<_ ||");
             System.out.println("||||||||||||||-CỬA CHÍNH-||||||||||||||||");
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             int select;
             do {
                 select = (int) checkInteger(0,table.size());
@@ -118,10 +118,10 @@ public class Restaurant {
             System.out.println("||     6. HOÁ ĐƠN TẠM TÍNH             ||");
             System.out.println("||     7. IN HOÁ ĐƠN                   ||");
             System.out.println("||     8. XEM KHUYẾN MÃI               ||");
-            System.out.println("||                           0. _BACK_ ||");
+            System.out.println("||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             while (true) {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 int select = (int) checkInteger(0,8);
                 switch (select)
                 {
@@ -168,7 +168,7 @@ public class Restaurant {
                 for( int  i = 0; i < monKhaiVi.size(); i ++) {
                     System.out.printf("\n%5s.%10s%10d",i+1,monKhaiVi.get(i).getName(),monKhaiVi.get(i).getPrice());
                 }
-                System.out.println("\n||                           0. _back_ ||");
+                System.out.println("\n||                           0. _<--<_ ||");
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||");
                 int selectKV;
                 String khai_vi = "";
@@ -176,7 +176,7 @@ public class Restaurant {
                 int pricekv = 0;
 
                 do {
-                    System.out.print(ANSI_YELLOW + "select: ");
+                    System.out.print(ANSI_YELLOW + "Chọn: ");
                     selectKV = (int) checkInteger(0,3);
                     switch (selectKV)
                     {
@@ -221,7 +221,7 @@ public class Restaurant {
             for( int  i = 0; i < monHaiSan.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,monHaiSan.get(i).getName(),monHaiSan.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int selectHS;
             String hai_san = "";
@@ -229,7 +229,7 @@ public class Restaurant {
             int priceHS = 0;
 
             do {
-                System.out.print(ANSI_YELLOW + "select: ");
+                System.out.print(ANSI_YELLOW + "Chọn: ");
                 selectHS = (int) checkInteger(0,3);
                 switch (selectHS)
                 {
@@ -274,7 +274,7 @@ public class Restaurant {
             for( int  i = 0; i < monRung.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,monRung.get(i).getName(),monRung.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -283,7 +283,7 @@ public class Restaurant {
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectR = (int) checkInteger(0,3);
             switch (selectR)
             {
@@ -328,7 +328,7 @@ public class Restaurant {
             for( int  i = 0; i < lau.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,lau.get(i).getName(),lau.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -337,7 +337,7 @@ public class Restaurant {
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectR = (int) checkInteger(0,3);
             switch (selectR)
             {
@@ -380,7 +380,7 @@ public class Restaurant {
             for( int  i = 0; i < douong.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,douong.get(i).getName(),douong.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _back_ ||");
+            System.out.println("\n||                           0. _<--<_ ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectDU;
@@ -389,7 +389,7 @@ public class Restaurant {
         int priceR = 0;
 
         do {
-            System.out.print(ANSI_YELLOW + "select: ");
+            System.out.print(ANSI_YELLOW + "Chọn: ");
             selectDU = (int) checkInteger(0,3);
             switch (selectDU)
             {
@@ -517,12 +517,13 @@ public class Restaurant {
             System.out.printf("\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
             System.out.println("\n");
         }
-        System.out.println("||                           0. _BACK_ ||");
+        System.out.println("||                           0. _ <--< _ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
 //        xoá món ăn trong danh sách chọn
         System.out.print("lựa chọn: ");
         int luaChon = (int) checkInteger(1,listFoods.size());
         listFoods.remove(luaChon - 1);
+        xemHoaDon();
         luaChonThanhToan();
     }
 
