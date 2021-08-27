@@ -1,5 +1,6 @@
 package com.codegymhueJava.working;
 
+import com.codegymhueJava.Thread.PrintBill;
 import com.codegymhueJava.readFile.ReadFileAdmin;
 import com.codegymhueJava.readFile.ReadFileAds;
 import com.codegymhueJava.writeFIleOption.*;
@@ -91,7 +92,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
     public static void inHoaDon () throws InterruptedException, FileNotFoundException {
         int totalPrice = 0;
-        System.out.println("\n----------HOÁ ĐƠN THANH TOÁN------------");
+        System.out.println(ANSI_WHITE + "\n----------HOÁ ĐƠN THANH TOÁN------------");
         System.out.printf("\n%2s.%15s%10s%10s","STT","TÊN","SL","TỔNG");
         for(int i = 0; i < listFoods.size(); i++) {
             System.out.printf("\n%2d.%15s%10d%10d",i+1,listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
@@ -131,27 +132,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
     public static void xemHoaDon() throws InterruptedException, FileNotFoundException {
-        loading.start();
-        loading.join();
-        if(listFoods.size() == 0) {
-            System.out.println("\nDanh sách trống.");
-        }else {
-            int totalPrice = 0;
-            System.out.println("\n------------HOÁ ĐƠN TẠM TÍNH--------------");
-            System.out.printf("\n%2s.%15s%10s%10s","STT","TÊN","SL","TỔNG");
-            for(int i = 0; i < listFoods.size(); i++) {
-                System.out.printf("\n%2d.%15s%10d%10d",i+1,listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
-                System.out.println("\n");
-            }
-            for(FoodsObj o : listFoods) {
-                totalPrice += o.getPrice();
-            }
-            System.out.println("\nTotal: " + totalPrice + " k");
-            System.out.println("Thời gian: " + java.time.LocalDateTime.now());
-            System.out.println("-----------------------------------------");
-            luaChonThanhToan();
-
-        }
+        hoaDonTamTinh();
     }
 
         public static void luaChonThanhToan() throws InterruptedException, FileNotFoundException {
@@ -777,13 +758,21 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             }while(select != 0);
         }
 
+//        Tăng id tự động.
+        static int count;
+        public static int autoID()
+        {
+            return count +=1;
+        }
+
+
         public static void thietLapBan() {
             System.out.print("Nhập số bàn: ");
             int ban = (int) checkInteger(1,10);
             for(int  i = 1; i <= ban ; i++) {
-                System.out.println("ID: ");
-                int id = (int) checkInteger(1,10);
-                System.out.print("Tên bàn: ");
+//                System.out.println("ID: ");
+                int id = autoID();
+                System.out.print("Tên bàn " + i + ": ");
                 String tenBan = check.checkString();
                 listTable.add(new Table(id,tenBan));
                 WriteFileTable.writeToFileTable(listTable);
@@ -889,6 +878,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             System.out.print("lựa chọn: ");
             int luaChon = (int) checkInteger(1,listFoods.size());
             listFoods.remove(luaChon - 1);
+        hoaDonTamTinh();
         luaChonThanhToan();
     }
 
@@ -992,12 +982,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                         }
                     }
                     break;
-
             }
-
         }while (option != 0);
-
-
     }
 
     private static void addMonAn() throws InterruptedException, FileNotFoundException {
@@ -1111,6 +1097,28 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     break;
 
             }
+        }
+    }
+
+
+    public static void hoaDonTamTinh() throws FileNotFoundException, InterruptedException {
+        if(listFoods.size() == 0) {
+            System.out.println("\nDanh sách trống.");
+        }else {
+            int totalPrice = 0;
+            System.out.println(ANSI_YELLOW + "\n------------HOÁ ĐƠN TẠM TÍNH--------------");
+            System.out.printf("\n%2s.%15s%10s%10s", "STT", "TÊN", "SL", "TỔNG");
+            for (int i = 0; i < listFoods.size(); i++) {
+                System.out.printf("\n%2d.%15s%10d%10d", i + 1, listFoods.get(i).getName(), listFoods.get(i).getQuantity(), listFoods.get(i).getPrice());
+                System.out.println("\n");
+            }
+            for (FoodsObj o : listFoods) {
+                totalPrice += o.getPrice();
+            }
+            System.out.println("\nTotal: " + totalPrice + " k");
+            System.out.println("Thời gian: " + java.time.LocalDateTime.now());
+            System.out.println("-----------------------------------------");
+            luaChonThanhToan();
         }
     }
 

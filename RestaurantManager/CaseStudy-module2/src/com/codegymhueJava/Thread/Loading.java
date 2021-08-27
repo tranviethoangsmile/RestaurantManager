@@ -7,8 +7,8 @@ public class Loading extends Thread{
 
     @Override
     public void run() {
-        System.out.print("Loanding");
-        for (int i = 0; i < 33; i++) {
+        System.out.print("VUI LÒNG ĐỢI");
+        for (int i = 0; i < 29; i++) {
             System.out.print(ANSI_BLACK + ANSI_WHITE_BACKGROUND + " " + ANSI_RESET);
             try {
                 Thread.sleep(100);
