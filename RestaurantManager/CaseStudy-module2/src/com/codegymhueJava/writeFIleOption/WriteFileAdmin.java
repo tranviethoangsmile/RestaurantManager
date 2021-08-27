@@ -8,7 +8,7 @@ import java.util.List;
 public class WriteFileAdmin {
     public static <E> void writeToFileAdmin(List<E> listName) {
         try {
-            FileWriter file = new FileWriter("adminFile.csv");
+            FileWriter file = new FileWriter("adminFile.csv",true);
             BufferedWriter bufferedWriter = new BufferedWriter(file);
             for (E e : listName) {
                 bufferedWriter.write(e.toString());
