@@ -1,5 +1,7 @@
 package com.codegymhueJava.working;
 
+import com.codegymhueJava.readFile.ReadFileAdmin;
+import com.codegymhueJava.readFile.ReadFileAds;
 import com.codegymhueJava.writeFIleOption.*;
 import com.codegymhueJava.Thread.Loading;
 import com.codegymhueJava.Thread.Sale;
@@ -22,8 +24,10 @@ import static com.codegymhueJava.writeFIleOption.WriteFileDoanhThu.writeToFileDo
 import static com.codegymhueJava.service.CheckInput.checkInteger;
 
     public class GoHome {
+//        List ads
+    static List <String> quangCao = new ArrayList<String>();
 //        List doanh thu
-        static List <DoanhThu> listDoanhThu = new ArrayList<DoanhThu>();
+    static List <DoanhThu> listDoanhThu = new ArrayList<DoanhThu>();
 //    DANH SÁCH MÓN ĂN VÀ ĐỒ UỐNG.
     static List <MonHaiSan> listHaiSan = new ArrayList<MonHaiSan>();
     static List <MonKhaiVi> monKhaiVi = new ArrayList<MonKhaiVi>();
@@ -31,15 +35,26 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     static List <DoUong> listDoUong = new ArrayList<DoUong>();
     static List <MonRung> listMonRung = new ArrayList<MonRung>();
 
+//    Danh sách addmin
+    static List <Admin> listAdmin = new ArrayList<Admin>();
+
 //    Bàn
     static List<Table> listTable = new ArrayList<Table>();
 
     //    Thread
     static ThreadGoodBye threadGoodBye = new ThreadGoodBye();
     static Loading loading = new Loading();
-    static Sale sale = new Sale();
+    static Sale sale;
 
-    //    màu chữ
+        static {
+            try {
+                sale = new Sale();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //    màu chữ
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
@@ -55,6 +70,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
 //    đọc file
     public static ReadFile readFile = new ReadFile();
+    static ReadFileAdmin readFileAdmin = new ReadFileAdmin();
 
 //    ghi file
     static WriteFileDoUong writeFileDoUong = new WriteFileDoUong();
@@ -62,8 +78,10 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     static WriteFileKhaiVi writeFileKhaiVi = new WriteFileKhaiVi();
     static WriteFileMonLau writeFileMonLau = new WriteFileMonLau();
     static WriteFileMonRung writeFileMonRung = new WriteFileMonRung();
+    static WriteFileAdmin writeFileAdmin = new WriteFileAdmin();
 
     static WriteFileTable writeFileTable = new WriteFileTable();
+    static WriteFileAds writeFileAds = new WriteFileAds();
 
     //    List
     static List<FoodsObj> listFoods = new ArrayList<FoodsObj>();
@@ -145,7 +163,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             System.out.println("||                                     ||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             while (true) {
-                System.out.println("chọn: ");
+                System.out.print("chọn: ");
                 int chon = (int) checkInteger(1,2);
                 switch (chon) {
                     case 1 :
@@ -160,7 +178,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }
 
         public static void menuDoUong() throws InterruptedException, FileNotFoundException {
-        List<DoUong> douong = readFile.readDoUong();
+        List<DoUong> douong = ReadFile.readDoUong();
         if (douong.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -214,7 +232,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
     public static void menuLau () throws InterruptedException, FileNotFoundException {
-        List<MonLau> lau = readFile.readMonLau();
+        List<MonLau> lau = ReadFile.readMonLau();
         if (lau.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -268,7 +286,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
     public static void menuNuiRung() throws InterruptedException, FileNotFoundException {
-        List <MonRung> monRung = readFile.readMonRung();
+        List <MonRung> monRung = ReadFile.readMonRung();
         if (monRung.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -321,7 +339,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
     public static void menuHaiSan () throws InterruptedException, FileNotFoundException {
-        List <MonHaiSan> monHaiSan = readFile.readMonHaiSan();
+        List <MonHaiSan> monHaiSan = ReadFile.readMonHaiSan();
         if (monHaiSan.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -375,7 +393,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
     public static void menuKhaiVi() throws InterruptedException, FileNotFoundException {
-        List <MonKhaiVi> monKhaiVi = readFile.readMonKhaiVi();
+        List <MonKhaiVi> monKhaiVi = ReadFile.readMonKhaiVi();
         if (monKhaiVi.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
         }else {
@@ -474,13 +492,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 case 8 :
                     xemKhuyenMai();
                     break;
-
             }
         }
 
     }
 
         public static void xemKhuyenMai() throws InterruptedException, FileNotFoundException {
+//        CHẠY CHỮ KHUYẾN MÃI
             sale.start();
             sale.join();
             menu();
@@ -491,11 +509,12 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||     1. ĐĂNG NHẬP                    ||");
         System.out.println("||     2. KHÁCH HÀNG                   ||");
+        System.out.println("||     3. ĐĂNG KÝ                      ||");
         System.out.println("||                           0. _exit_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
             System.out.print(ANSI_YELLOW + "select: ");
-            int select = (int) checkInteger(0,2);
+            int select = (int) checkInteger(0,3);
             switch (select)
             {
                 case 0 :
@@ -504,28 +523,45 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     threadGoodBye.join();
                     System.exit(0);
                 case 1 :
-                    String [] addmin = {"hoang"};
-                    String [] pass = {"123"};
-                    System.out.print("Tên: ");
-                    String name = scanner.nextLine();
-                    for(int i = 0; i < addmin.length; ++i) {
-                        if(addmin[i].equals(name)) {
-                            System.out.print("Mật khẩu: ");
-                            String pas = scanner.nextLine();
-                            for(int j = 0; j < pass.length; j++) {
-                                if(pass[j].equals(pas)) {
-                                    addmin();
-                                }else {
-                                    System.out.println("Sai mật khẩu...Vui lòng kiểm tra lại");
+//                    ĐĂNG NHẬP
+                    List <Admin> admin = ReadFileAdmin.readFileAdmin();
+                    boolean checkName = false;
+                        System.out.print("Tên: ");
+                        String name = check.checkString();
+                        for(Admin ad : admin) {
+                            if(ad.getName().equals(name)) {
+                                checkName = true;
+                                System.out.print("Mật khẩu: ");
+                                String password = check.checkString();
+                                for (Admin adPas : admin) {
+                                    if (adPas.getPassword().equals(password)) {
+                                        System.out.print("Chào " + adPas.getName());
+                                        addmin();
+                                    } else {
+                                        System.out.print("Mật khẩu sai...Vui lòng kiểm tra lại");
+                                        begin();
+                                    }
                                 }
+                            }else {
+                                checkName = false;
                             }
-                        }else {
-                            System.out.println("Tên đăng nhập không tồn tại...Vui lòng kiểm tra lại.");
                         }
-                    }
+                        if(!checkName) {
+                            System.out.println("Nhân viên " + name + " Không tồn tại");
+                        }
                     break;
                 case 2 :
+//                    CHUYỂN HƯỚNG ĐẾN CHỌN CÁCH DÙNG BỮA
                     cachDungBua();
+                    break;
+                case 3 :
+//                    ĐĂNG KÍ
+                    System.out.print("Nhập tên: ");
+                    String adminName = check.checkString();
+                    System.out.print("Mật khẩu: ");
+                    String password = check.checkString();
+                    listAdmin.add(new Admin(adminName,password));
+                    WriteFileAdmin.writeToFileAdmin(listAdmin);
                     break;
 
             }
@@ -541,12 +577,14 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     3. KIỂM TRA DOANH THU           ||");
         System.out.println("||     4. HIỂN THỊ TẤT CẢ CÁC MÓN      ||");
         System.out.println("||     5. THIẾT LẬP BÀN                ||");
-        System.out.println("||                           0. _exit_ ||");
+        System.out.println("||     6. QUẢN LÝ DANH SÁCH NHÂN VIÊN  ||");
+        System.out.println("||     7. THIẾT LẬP QUẢNG CÁO          ||");
+        System.out.println("||                           0. _BACK_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int select;
         do {
             System.out.print(ANSI_YELLOW + "select: ");
-             select = (int) checkInteger(0,5);
+             select = (int) checkInteger(0,7);
             switch (select)
             {
                 case 0 :
@@ -559,7 +597,49 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     suaMonAn();
                     break;
                 case 3 :
-                    kiemTraDoanhThu();
+                    List <Admin> admin = ReadFileAdmin.readFileAdmin();
+                    System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
+                    System.out.println("||     Bạn có phải là admin không?     ||");
+                    System.out.println("||-------------------------------------||");
+                    System.out.println("||     1. PHẢI                         ||");
+                    System.out.println("||     2. KHÔNG                        ||");
+                    System.out.println("||                           0. _BACK_ ||");
+                    System.out.println("|||||||||||||||||||||||||||||||||||||||||");
+                    int selected;
+                    do {
+                        System.out.print(ANSI_YELLOW + "select: ");
+                        selected = (int) checkInteger(0,2);
+                        switch (selected)
+                        {
+                            case 0 :
+                                addmin();
+                                break;
+                            case 1 :
+                                System.out.print("Tên: ");
+                                String name = check.checkString();
+                                if(name.equals("admin")) {
+                                    System.out.print("Mật khẩu: ");
+                                    String password = check.checkString();
+                                    for(Admin adPas : admin) {
+                                        if(adPas.getPassword().equals(password)) {
+                                            System.out.println("Chào " + adPas.getName());
+                                            kiemTraDoanhThu();
+                                            break;
+                                        }else {
+                                            System.out.println("Mật khẩu sai...Vui lòng kiểm tra lại");
+                                            addmin();
+                                        }
+                                    }
+                                }else {
+                                    System.out.println("bạn không được cấp quyền.");
+                                    addmin();
+                                }
+                                break;
+                            case 2 :
+                                addmin();
+                                break;
+                        }
+                    }while(select != 0);
                     break;
                 case 4 :
                     hienThiTatCa();
@@ -567,9 +647,116 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 case 5 :
                     thietLapBan ();
                     break;
+                case 6 :
+                    danhSachNhanVien();
+                    break;
+                case 7 :
+                    thietLapQuangCao();
+                    break;
+
             }
         }while(select != 0);
     }
+
+        private static void thietLapQuangCao() throws FileNotFoundException, InterruptedException {
+            System.out.print("số chữ:");
+            int num = scanner.nextInt();
+            for(int i = 1; i <= num; i++) {
+                System.out.print("Chữ " + i + ": ");
+                String word = check.checkString();
+                quangCao.add(word);
+                WriteFileAds.writeToFileAds(quangCao);
+
+            }
+            addmin();
+        }
+
+        private static void danhSachNhanVien() throws FileNotFoundException, InterruptedException {
+            List <Admin> admin = ReadFileAdmin.readFileAdmin();
+            System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
+            System.out.println("||      TRANG QUẢN LÝ NHÂN VIÊN        ||");
+            System.out.println("||-------------------------------------||");
+            System.out.println("||     1. DANH SÁCH NHÂN VIÊN          ||");
+            System.out.println("||     2. XOÁ NHÂN VIÊN                ||");
+            System.out.println("||                           0. _BACK_ ||");
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||");
+            int select;
+            do {
+                System.out.print(ANSI_YELLOW + "select: ");
+                select = (int) checkInteger(0,2);
+                switch (select)
+                {
+                    case 0 :
+                        addmin();
+                        break;
+                    case 1 :
+                        for(int i = 0; i < admin.size(); i ++) {
+                            System.out.printf("%2d%10s",i + 1,admin.get(i).getName());
+                            System.out.println("\n");
+                        }
+                        danhSachNhanVien();
+                        break;
+                    case 2 :
+                        xoaNhanVien();
+                        break;
+                }
+            }while(select != 0);
+
+
+        }
+
+        private static void xoaNhanVien() throws FileNotFoundException, InterruptedException {
+            List <Admin> admin = ReadFileAdmin.readFileAdmin();
+            System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
+            System.out.println("||     Bạn có phải là admin không?     ||");
+            System.out.println("||-------------------------------------||");
+            System.out.println("||     1. PHẢI                         ||");
+            System.out.println("||     2. KHÔNG                        ||");
+            System.out.println("||                           0. _BACK_ ||");
+            System.out.println("|||||||||||||||||||||||||||||||||||||||||");
+            int select;
+            do {
+                System.out.print(ANSI_YELLOW + "select: ");
+                select = (int) checkInteger(0,2);
+                switch (select)
+                {
+                    case 0 :
+                        addmin();
+                        break;
+                    case 1 :
+                        System.out.print("Tên: ");
+                        String name = check.checkString();
+                        if(name.equals("admin")) {
+                            System.out.print("Mật khẩu: ");
+                            String password = check.checkString();
+                            for(Admin adPas : admin) {
+                                if(adPas.getPassword().equals(password)) {
+                                    System.out.println("Chào " + adPas.getName());
+                                    System.out.print("Chọn nhân nv: ");
+                                    int chon = scanner.nextInt();
+                                    admin.remove(chon - 1);
+                                    WriteFileAdmin.writeToFileAdmin(admin);
+                                    for(int i = 0; i < admin.size(); i ++) {
+                                        System.out.printf("%2d%10s",i + 1,admin.get(i).getName());
+                                        System.out.println("\n");
+                                    }
+                                    danhSachNhanVien();
+                                }else {
+                                    System.out.println("Mật khẩu sai...Vui lòng kiểm tra lại");
+                                    begin ();
+                                }
+                            }
+                        }else {
+                            System.out.println("bạn không được cấp quyền.");
+                            danhSachNhanVien();
+                        }
+                        break;
+                    case 2 :
+                        danhSachNhanVien();
+                        break;
+                }
+            }while(select != 0);
+        }
 
         public static void thietLapBan() {
             System.out.print("Nhập số bàn: ");
@@ -580,14 +767,14 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 System.out.print("Tên bàn: ");
                 String tenBan = check.checkString();
                 listTable.add(new Table(id,tenBan));
-                writeFileTable.writeToFileTable(listTable);
+                WriteFileTable.writeToFileTable(listTable);
 
             }
         }
 
         private static void hienThiTatCa() {
 //        hiển thị file khai vị
-        List <MonKhaiVi> monKhaiVi = readFile.readMonKhaiVi();
+        List <MonKhaiVi> monKhaiVi = ReadFile.readMonKhaiVi();
         System.out.println(ANSI_GREEN + "Món khai vị:");
         if(monKhaiVi.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
@@ -599,7 +786,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }
 
 //        hiển thị file hải sản
-        List <MonHaiSan> monHaiSan = readFile.readMonHaiSan();
+        List <MonHaiSan> monHaiSan = ReadFile.readMonHaiSan();
         System.out.println("\n" +ANSI_GREEN + "Hải Sản: ");
         if(monHaiSan.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
@@ -612,7 +799,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }
 
 //        Hiển thị file Món Rừng
-        List <MonRung> monRung = readFile.readMonRung();
+        List <MonRung> monRung = ReadFile.readMonRung();
         System.out.println("\n" +ANSI_GREEN + "Món Rừng: ");
         if(monRung.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
@@ -624,7 +811,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }
 
 //        Hiển thị file Lẫu
-        List<MonLau> lau = readFile.readMonLau();
+        List<MonLau> lau = ReadFile.readMonLau();
         System.out.println("\n" +ANSI_GREEN + "Món Lẫu:");
         if(lau.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
@@ -636,7 +823,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }
 
 //        Đọc file Đồ uống
-        List<DoUong> douong = readFile.readDoUong();
+        List<DoUong> douong = ReadFile.readDoUong();
         System.out.println("\n" +ANSI_GREEN + "Đồ Uống:");
         if(douong.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
@@ -652,7 +839,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
     private static void kiemTraDoanhThu() throws FileNotFoundException {
         ReadFileDoanhThu dt = new ReadFileDoanhThu();
-    List<DoanhThu> listDoanhThu = dt.readDoanhThu ();
+    List<DoanhThu> listDoanhThu = ReadFileDoanhThu.readDoanhThu();
     int total = 0;
         System.out.printf("%20s%20s","Tiền","Ngày");
         System.out.println("\n-------------------------------------------");
@@ -671,7 +858,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
     public static void xoaMonAn() throws InterruptedException, FileNotFoundException {
         System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
-        System.out.println("||            BẠN CẦN XOÁ MÓN NÀO?     ||");
+        System.out.println("||         BẠN CẦN XOÁ MÓN NÀO?        ||");
         System.out.println("||-------------------------------------||");
         for(int i = 0; i < listFoods.size(); i++) {
             System.out.printf("%2d.%10s%5d%10d",i+1,listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
@@ -701,46 +888,46 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         int option;
         do {
             System.out.print(ANSI_BLUE + "chọn: ");
-            option = (int) check.checkInteger(0,5);
+            option = (int) checkInteger(0,5);
             switch (option) {
                 case 0 :
                     addmin();
                     break;
                 case 1 :
-                    List <MonKhaiVi> monKhaiVi = readFile.readMonKhaiVi();
+                    List <MonKhaiVi> monKhaiVi = ReadFile.readMonKhaiVi();
                     System.out.println("Nhập tên món: ");
                     String name = check.checkString();
                     for (MonKhaiVi khaiVi : monKhaiVi) {
                         if(khaiVi.getName().equals(name)) {
-                            System.out.println("Nhập tên mới: ");
+                            System.out.print("Nhập tên mới: ");
                             String newName= check.checkString();
                             khaiVi.setName(newName);
-                            System.out.println("Nhập giá: ");
-                            int newPrice = (int) check.checkInteger(0,1000);
+                            System.out.print("Nhập giá: ");
+                            int newPrice = (int) checkInteger(0,1000);
                             khaiVi.setPrice(newPrice);
-                            writeFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
+                            WriteFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
                         }
                     }
                     break;
                 case 2 :
-                    List <MonHaiSan> monHaiSan = readFile.readMonHaiSan();
+                    List <MonHaiSan> monHaiSan = ReadFile.readMonHaiSan();
                     System.out.println("Nhập tên món: ");
                     String ten = check.checkString();
                     for (MonHaiSan haiSan : monHaiSan) {
                         if(haiSan.getName().equals(ten)) {
-                            System.out.println("Nhập tên mới: ");
+                            System.out.print("Nhập tên mới: ");
                             String newName= check.checkString();
                             haiSan.setName(newName);
-                            System.out.println("Nhập giá: ");
-                            int newPrice = (int) check.checkInteger(0,1000);
+                            System.out.print("Nhập giá: ");
+                            int newPrice = (int) checkInteger(0,1000);
                             haiSan.setPrice(newPrice);
-                            writeFileHaiSan.writeToFileHaiSan(monHaiSan);
+                            WriteFileHaiSan.writeToFileHaiSan(monHaiSan);
                         }
                     }
                     break;
                 case 3 :
-                    List <MonRung> monRung = readFile.readMonRung();
-                    System.out.println("Nhập tên món: ");
+                    List <MonRung> monRung = ReadFile.readMonRung();
+                    System.out.print("Nhập tên món: ");
                     String mon = check.checkString();
                     for (MonRung mr : monRung) {
                         if (mr.getName().equals(mon)) {
@@ -748,15 +935,15 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             String newName = check.checkString();
                             mr.setName(newName);
                             System.out.println("Nhập giá: ");
-                            int newPrice = (int) check.checkInteger(0, 1000);
+                            int newPrice = (int) checkInteger(0, 1000);
                             mr.setPrice(newPrice);
-                            writeFileMonRung.writeToFileMonRung(monRung);
+                            WriteFileMonRung.writeToFileMonRung(monRung);
                         }
                     }
                     break;
                 case 4 :
-                    List<MonLau> lau = readFile.readMonLau();
-                    System.out.println("Nhập tên món: ");
+                    List<MonLau> lau = ReadFile.readMonLau();
+                    System.out.print("Nhập tên món: ");
                     String monL = check.checkString();
                     for (MonLau monLau : lau) {
                         if (monLau.getName().equals(monL)) {
@@ -764,15 +951,15 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             String newName = check.checkString();
                             monLau.setName(newName);
                             System.out.println("Nhập giá: ");
-                            int newPrice = (int) check.checkInteger(0, 1000);
+                            int newPrice = (int) checkInteger(0, 1000);
                             monLau.setPrice(newPrice);
-                            writeFileMonLau.writeFileMonLau(lau);
+                            WriteFileMonLau.writeFileMonLau(lau);
                         }
                     }
                     break;
                 case 5 :
-                    List<DoUong> douong = readFile.readDoUong();
-                    System.out.println("Nhập tên món: ");
+                    List<DoUong> douong = ReadFile.readDoUong();
+                    System.out.print("Nhập tên món: ");
                     String du = check.checkString();
                     for (DoUong doU : douong) {
                         if (doU.getName().equals(du)) {
@@ -780,9 +967,9 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             String newName = check.checkString();
                             doU.setName(newName);
                             System.out.println("Nhập giá: ");
-                            int newPrice = (int) check.checkInteger(0, 1000);
+                            int newPrice = (int) checkInteger(0, 1000);
                             doU.setPrice(newPrice);
-                            writeFileDoUong.writeToFileDoUong(douong);
+                            WriteFileDoUong.writeToFileDoUong(douong);
                         }
                     }
                     break;
@@ -815,64 +1002,64 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     addmin();
                     break;
                 case 1 :
-                    System.out.println("Nhập số món: ");
-                    int n = (int) check.checkInteger(1,3);
+                    System.out.print("Nhập số món: ");
+                    int n = (int) checkInteger(1,3);
                     for(int i = 0; i < n; i++ ){
-                        System.out.println("Món " + i );
+                        System.out.print("Món " + i );
                         String name = check.checkString();
-                        System.out.println("Giá: " );
+                        System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
                         monKhaiVi.add(new MonKhaiVi(name,price));
                     }
-                    writeFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
+                    WriteFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
                     break;
                 case 2 :
-                    System.out.println("Nhập số món: ");
-                    int m = (int) check.checkInteger(1,3);
+                    System.out.print("Nhập số món: ");
+                    int m = (int) checkInteger(1,3);
                     for(int i = 0; i < m; i++ ){
-                        System.out.println("Món " + i );
+                        System.out.print("Món " + i );
                         String name = check.checkString();
-                        System.out.println("Giá: " );
+                        System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
                         listHaiSan.add(new MonHaiSan(name,price));
                     }
-                    writeFileHaiSan.writeToFileHaiSan(listHaiSan);
+                    WriteFileHaiSan.writeToFileHaiSan(listHaiSan);
                     break;
                 case 3 :
-                    System.out.println("Nhập số món: ");
-                    int k = (int) check.checkInteger(1,3);
+                    System.out.print("Nhập số món: ");
+                    int k = (int) checkInteger(1,3);
                     for(int i = 0; i < k; i++ ){
-                        System.out.println("Món " + i );
+                        System.out.print("Món " + i );
                         String name = check.checkString();
-                        System.out.println("Giá: " );
+                        System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
                         listMonRung.add(new MonRung(name,price));
                     }
-                    writeFileMonRung.writeToFileMonRung(listMonRung);
+                    WriteFileMonRung.writeToFileMonRung(listMonRung);
                     break;
                 case 4 :
-                    System.out.println("Nhập số món: ");
-                    int h = (int) check.checkInteger(1,3);
+                    System.out.print("Nhập số món: ");
+                    int h = (int) checkInteger(1,3);
                     for(int i = 0; i < h; i++ ){
-                        System.out.println("Món " + i );
+                        System.out.print("Món " + i );
                         String name = check.checkString();
-                        System.out.println("Giá: " );
+                        System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
                         listMonLau.add(new MonLau(name,price));
                     }
-                    writeFileMonLau.writeFileMonLau(listMonLau);
+                    WriteFileMonLau.writeFileMonLau(listMonLau);
                     break;
                 case 5 :
-                    System.out.println("Nhập số món: ");
-                    int e = (int) check.checkInteger(1,3);
+                    System.out.print("Nhập số món: ");
+                    int e = (int) checkInteger(1,3);
                     for(int i = 0; i < e; i++ ){
-                        System.out.println("Món " + i );
+                        System.out.print("Món " + i );
                         String name = check.checkString();
-                        System.out.println("Giá: " );
+                        System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
                         listDoUong.add(new DoUong(name,price));
                     }
-                    writeFileMonLau.writeFileMonLau(listDoUong);
+                    WriteFileMonLau.writeFileMonLau(listDoUong);
                     break;
             }
         }while (selectThemMon != 0);
@@ -898,7 +1085,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     threadGoodBye.join();
                     System.exit(0);
                 case 1 :
-                    restaurant.chonBan();
+                    Restaurant.chonBan();
                     break;
                 case 2 :
                     menu();

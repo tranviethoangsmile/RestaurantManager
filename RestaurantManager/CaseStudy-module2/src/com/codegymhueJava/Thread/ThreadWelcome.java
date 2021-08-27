@@ -2,7 +2,7 @@ package com.codegymhueJava.Thread;
 
 public class ThreadWelcome extends Thread{
     public static final String ANSI_YELLOW = "\u001B[33m";
-            String [] wc = {"w","e","l","c","o","m","e"," ","t","o"," ","C","a","s","e","S","t","u","d","y"," ","M","o","d","u","l","e"," 2"," b","y ","H","o","a","n","g",".T","r","a","n"};
+            String [] wc = {"W","E","L","C","O","M","E"," ","T","O"," ","C","A","S","E","S","T","U","D","Y"," ","M","O","D","U","L","E"," 2"," B","Y ","H","O","A","N","G",".T","R","A","N"," <3"};
             int leng = wc.length;
             @Override
             public void run() {
