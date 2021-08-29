@@ -1,3 +1,3 @@
-Dê các loại,250
-Heo rừng,250
-Gà rừng,400
+de,250
+heo rung,300
+ga rung,300

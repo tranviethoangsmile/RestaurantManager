@@ -1,3 +1,3 @@
-Hàu nướng,100
-Mực các loại,150
-Cua các loại,400
+hau,150
+muc,200
+cua,250

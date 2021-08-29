@@ -1,3 +1,3 @@
-lẫu tươi sống,200
-lẫu gà,150
-lẫu dê,300
+bia,25
+nuoc ngot,20
+nuoc loc,10

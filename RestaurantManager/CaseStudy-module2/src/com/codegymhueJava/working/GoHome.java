@@ -122,17 +122,17 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             int chon = (int) checkInteger(0,1);
             switch (chon) {
                 case 1:
-                    menu();
+                    menu ();
                     break;
                 case 0 :
-                    begin();
+                    begin ();
                     break;
             }
         }
     }
 
     public static void xemHoaDon() throws InterruptedException, FileNotFoundException {
-        hoaDonTamTinh();
+        hoaDonTamTinh ();
     }
 
         public static void luaChonThanhToan() throws InterruptedException, FileNotFoundException {
@@ -148,7 +148,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 int chon = (int) checkInteger(1,2);
                 switch (chon) {
                     case 1 :
-                        xoaMonAn();
+                        xoaMonAn ();
                         break;
                     case 2 :
                         inHoaDon ();
@@ -291,7 +291,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             switch (selectR)
             {
                 case 0 :
-                    menu();
+                    menu ();
                     break;
                 case 1 :
                     rung = monRung.get(0).getName();
@@ -343,7 +343,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 switch (selectHS)
                 {
                     case 0 :
-                        menu();
+                        menu ();
                         break;
                     case 1 :
                         hai_san = monHaiSan.get(0).getName();
@@ -447,31 +447,31 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             switch (select)
             {
                 case 0 :
-                    begin();
+                    begin ();
                     break;
                 case 1 :
-                    menuKhaiVi();
+                    menuKhaiVi ();
                     break;
                 case 2 :
                     menuHaiSan ();
                     break;
                 case 3 :
-                    menuNuiRung();
+                    menuNuiRung ();
                     break;
                 case 4 :
                     menuLau ();
                     break;
                 case 5 :
-                    menuDoUong();
+                    menuDoUong ();
                     break;
                 case 6 :
-                    xemHoaDon();
+                    xemHoaDon ();
                     break;
                 case 7 :
-                    inHoaDon();
+                    inHoaDon ();
                     break;
                 case 8 :
-                    xemKhuyenMai();
+                    xemKhuyenMai ();
                     break;
             }
         }
@@ -482,7 +482,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 //        CHẠY CHỮ KHUYẾN MÃI
             sale.start();
             sale.join();
-            menu();
+            menu ();
         }
 
 
@@ -514,12 +514,12 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                                 checkName = true;
                                 System.out.print("Mật khẩu: ");
                                 String password = check.checkString();
-                                    if (ad.getPassword().equals(password)) {
-                                        System.out.print("Chào " + ad.getName());
-                                        addmin();
+                                    if (ad.getPassword ().equals(password)) {
+                                        System.out.print("Chào " + ad.getName ());
+                                        addmin ();
                                     } else {
                                         System.out.print("Mật khẩu sai...Vui lòng kiểm tra lại");
-                                        begin();
+                                        begin ();
                                     }
 
                             }else {
@@ -552,6 +552,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     if(checkpas) {
                         listAdmin.add(new Admin(adminName,password));
                         WriteFileAdmin.writeToFileAdmin(listAdmin);
+                        System.out.println(ANSI_WHITE + "Đăng kí thành công.");
                         break;
                     }else {
                         System.out.println("Mật khẩu không giống. Vui lòng kiểm tra lại...");
@@ -581,13 +582,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
             switch (select)
             {
                 case 0 :
-                    begin();
+                    begin ();
                     break;
                 case 1 :
-                    addMonAn();
+                    addMonAn ();
                     break;
                 case 2 :
-                    suaMonAn();
+                    suaMonAn ();
                     break;
                 case 3 :
                     List <Admin> admin = ReadFileAdmin.readFileAdmin();
@@ -605,7 +606,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                         switch (selected)
                         {
                             case 0 :
-                                addmin();
+                                addmin ();
                                 break;
                             case 1 :
                                 System.out.print("Tên: ");
@@ -614,37 +615,37 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                                     System.out.print("Mật khẩu: ");
                                     String password = check.checkString();
                                     for(Admin adPas : admin) {
-                                        if(adPas.getPassword().equals(password)) {
+                                        if(adPas.getPassword ().equals(password)) {
                                             System.out.println("Chào " + adPas.getName());
-                                            kiemTraDoanhThu();
+                                            kiemTraDoanhThu ();
                                             break;
                                         }else {
                                             System.out.println("Mật khẩu sai...Vui lòng kiểm tra lại");
-                                            addmin();
+                                            addmin ();
                                         }
                                     }
                                 }else {
                                     System.out.println("bạn không được cấp quyền.");
-                                    addmin();
+                                    addmin ();
                                 }
                                 break;
                             case 2 :
-                                addmin();
+                                addmin ();
                                 break;
                         }
                     }while(select != 0);
                     break;
                 case 4 :
-                    hienThiTatCa();
+                    hienThiTatCa ();
                     break;
                 case 5 :
                     thietLapBan ();
                     break;
                 case 6 :
-                    danhSachNhanVien();
+                    danhSachNhanVien ();
                     break;
                 case 7 :
-                    thietLapQuangCao();
+                    thietLapQuangCao ();
                     break;
 
             }
@@ -652,7 +653,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
     }
 
         private static void thietLapQuangCao() throws FileNotFoundException, InterruptedException {
-            System.out.print("số chữ:");
+            System.out.print("số chữ: ");
             int num = scanner.nextInt();
             for(int i = 1; i <= num; i++) {
                 System.out.print("Chữ " + i + ": ");
@@ -734,7 +735,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                                     }else {
                                         admin.remove(chon - 1);
                                         WriteFileAdmin.writeToFileAdmin(admin);
-                                        for(int i = 0; i < admin.size(); i ++) {
+                                        for( int i = 0; i < admin.size(); i++ ) {
                                             System.out.printf("%2d%10s",i + 1,admin.get(i).getName());
                                             System.out.println("\n");
                                         }
@@ -820,7 +821,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
 //        Hiển thị file Lẫu
         List<MonLau> lau = ReadFile.readMonLau();
-        System.out.println("\n" +ANSI_GREEN + "Món Lẫu:");
+        System.out.println("\n" +ANSI_GREEN + "Món Lẫu: ");
         if(lau.size() == 0) {
             System.out.println(ANSI_WHITE + "CHƯA CÓ THÔNG TIN MÓN ĂN");
         }else {
@@ -1010,7 +1011,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int n = (int) checkInteger(1,3);
                     for(int i = 0; i < n; i++ ){
-                        System.out.print("Món " + i );
+                        System.out.print("Món " + i + 1 + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
@@ -1022,7 +1023,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int m = (int) checkInteger(1,3);
                     for(int i = 0; i < m; i++ ){
-                        System.out.print("Món " + i );
+                        System.out.print("Món " + i + 1 + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
@@ -1034,7 +1035,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int k = (int) checkInteger(1,3);
                     for(int i = 0; i < k; i++ ){
-                        System.out.print("Món " + i );
+                        System.out.print("Món " + i + 1 + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
@@ -1046,7 +1047,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int h = (int) checkInteger(1,3);
                     for(int i = 0; i < h; i++ ){
-                        System.out.print("Món " + i );
+                        System.out.print("Món " + i + 1 + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
@@ -1058,7 +1059,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int e = (int) checkInteger(1,3);
                     for(int i = 0; i < e; i++ ){
-                        System.out.print("Món " + i );
+                        System.out.print("Món " + i + 1 + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);

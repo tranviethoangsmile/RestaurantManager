@@ -40,7 +40,7 @@ public class Restaurant {
         static Sale sale;
             static {
                 try {
-                    sale = new Sale();
+                    sale = new Sale ();
                 } catch (FileNotFoundException e) {
              e.printStackTrace();
                 }
@@ -58,14 +58,14 @@ public class Restaurant {
 
         static Scanner scanner = new Scanner(System.in);
         //    kiểm tra đầu vào
-        static CheckInput check = new CheckInput();
+        static CheckInput check = new CheckInput ();
 
         //    đọc file
-        public static ReadFile readFile = new ReadFile();
+        public static ReadFile readFile = new ReadFile ();
 
         //    List
         static List<FoodsObj> listFoods = new ArrayList<FoodsObj>();
-        static GoHome function = new GoHome();
+        static GoHome function = new GoHome ();
 
         static int id;
         public static void chonBan () throws FileNotFoundException, InterruptedException {
@@ -84,7 +84,7 @@ public class Restaurant {
             System.out.println("___________                            ||");
             System.out.println("||QUẦY    |                  0. _<--<_ ||");
             System.out.println("||||||||||||||-CỬA CHÍNH-||||||||||||||||");
-            System.out.print(ANSI_YELLOW + "Chọn: ");
+            System.out.print( ANSI_YELLOW + "Chọn: " );
             int select;
             boolean checkTB = false;
             do {
@@ -133,31 +133,31 @@ public class Restaurant {
                 switch (select)
                 {
                     case 0 :
-                        chonBan();
+                        chonBan ();
                         break;
                     case 1 :
-                        menuKhaiVi();
+                        menuKhaiVi ();
                         break;
                     case 2 :
                         menuHaiSan ();
                         break;
                     case 3 :
-                        menuNuiRung();
+                        menuNuiRung ();
                         break;
                     case 4 :
                         menuLau ();
                         break;
                     case 5 :
-                        menuDoUong();
+                        menuDoUong ();
                         break;
                     case 6 :
-                        xemHoaDon();
+                        xemHoaDon ();
                         break;
                     case 7 :
-                        inHoaDon();
+                        inHoaDon ();
                         break;
                     case 8 :
-                        GoHome.xemKhuyenMai();
+                        GoHome.xemKhuyenMai ();
                         break;
 
                 }
@@ -172,10 +172,10 @@ public class Restaurant {
                 System.out.println(ANSI_PURPLE + "\n|||||||||||||||||||||||||||||||||||||||||");
                 System.out.println("||           THỰC ĐƠN KHAI VỊ          ||");
                 System.out.println("||-------------------------------------||");
-                for( int  i = 0; i < monKhaiVi.size(); i ++) {
+                for( int  i = 0; i < monKhaiVi.size(); i++ ) {
                     System.out.printf("\n%5s.%10s%10d",i+1,monKhaiVi.get(i).getName(),monKhaiVi.get(i).getPrice());
                 }
-                System.out.println("\n||                           0. _<--<_ ||");
+                System.out.println("\n||                           0. _<--<_||");
                 System.out.println("|||||||||||||||||||||||||||||||||||||||||");
                 int selectKV;
                 String khai_vi = "";
@@ -228,7 +228,7 @@ public class Restaurant {
             for( int  i = 0; i < monHaiSan.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,monHaiSan.get(i).getName(),monHaiSan.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _<--<_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
             int selectHS;
             String hai_san = "";
@@ -241,13 +241,13 @@ public class Restaurant {
                 switch (selectHS)
                 {
                     case 0 :
-                        menu();
+                        menu ();
                         break;
                     case 1 :
                         hai_san = monHaiSan.get(0).getName();
                         System.out.print("Số lượng: ");
                         quantityHS = (int) checkInteger(0,10);
-                        priceHS = monHaiSan.get(0).getPrice()* quantityHS;
+                        priceHS = monHaiSan.get(0).getPrice() * quantityHS;
                         listFoods.add(new FoodsObj(id,hai_san,quantityHS, priceHS));
                         break;
                     case 2 :
@@ -281,7 +281,7 @@ public class Restaurant {
             for( int  i = 0; i < monRung.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,monRung.get(i).getName(),monRung.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _<--<_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -301,7 +301,7 @@ public class Restaurant {
                     rung = monRung.get(0).getName();
                     System.out.print("Số lượng: ");
                     quantityR = (int) checkInteger(0,10);
-                    priceR = monRung.get(0).getPrice()* quantityR;
+                    priceR = monRung.get(0).getPrice() * quantityR;
                     listFoods.add(new FoodsObj(id,rung,quantityR, priceR));
                     break;
                 case 2 :
@@ -335,7 +335,7 @@ public class Restaurant {
             for( int  i = 0; i < lau.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,lau.get(i).getName(),lau.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _<--<_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectR;
@@ -355,7 +355,7 @@ public class Restaurant {
                     mLau = lau.get(0).getName();
                     System.out.print("Số lượng: ");
                     quantityL = (int) checkInteger(0,10);
-                    priceR = lau.get(0).getPrice()* quantityL;
+                    priceR = lau.get(0).getPrice() * quantityL;
                     listFoods.add(new FoodsObj(id,mLau,quantityL, priceR));
                     break;
                 case 2 :
@@ -376,7 +376,7 @@ public class Restaurant {
         }while (selectR != 0);
     }
 
-    public static void menuDoUong() throws InterruptedException, FileNotFoundException {
+    public static void menuDoUong () throws InterruptedException, FileNotFoundException {
         List<DoUong> douong = ReadFile.readDoUong();
         if (douong.size() == 0) {
             System.out.println(ANSI_YELLOW + "TẠM HẾT HÀNG");
@@ -387,7 +387,7 @@ public class Restaurant {
             for( int  i = 0; i < douong.size(); i ++) {
                 System.out.printf("\n%5s.%10s%10d",i+1,douong.get(i).getName(),douong.get(i).getPrice());
             }
-            System.out.println("\n||                           0. _<--<_ ||");
+            System.out.println("\n||                           0. _<--<_||");
             System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         }
         int selectDU;
@@ -407,7 +407,7 @@ public class Restaurant {
                     du = douong.get(0).getName();
                     System.out.print("Số lượng: ");
                     quantityL = (int) checkInteger(0,10);
-                    priceR = douong.get(0).getPrice()* quantityL;
+                    priceR = douong.get(0).getPrice() * quantityL;
                     listFoods.add(new FoodsObj(id,du,quantityL, priceR));
                     break;
                 case 2 :
@@ -456,14 +456,14 @@ public class Restaurant {
 
     public static void inHoaDon () throws InterruptedException, FileNotFoundException {
         int totalPrice = 0;
-        System.out.println(ANSI_GREEN + "\n-----------HOÁ ĐƠN THANH TOÁN-------------");
-        System.out.printf("%2s.%5s%10s%5s%10s","STT","BÀN","TÊN","SL","TỔNG");
+        System.out.println( ANSI_GREEN + "\n-----------HOÁ ĐƠN THANH TOÁN-------------" );
+        System.out.printf( "%2s.%5s%10s%5s%10s","STT","BÀN","TÊN","SL","TỔNG" );
         for(int i = 0; i < listFoods.size(); i++) {
-            System.out.printf("\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
+            System.out.printf( "\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice() );
             System.out.println("\n");
         }
         for(FoodsObj o : listFoods) {
-            totalPrice += o.getPrice();
+            totalPrice += o.getPrice ();
         }
         Date date = new Date();
         System.out.println("\nTotal: " + totalPrice + " k");
@@ -482,7 +482,7 @@ public class Restaurant {
         System.out.println("||    0. Thoát        ||");
         System.out.println("||||||||||||||||||||||||");
         while (true) {
-            System.out.print("Chọn: ");
+            System.out.print( "Chọn: " );
             int chon = (int) checkInteger(0,1);
             switch (chon) {
                 case 1:
@@ -495,44 +495,43 @@ public class Restaurant {
         }
     }
 
-    public static void xoaMonAn() throws InterruptedException, FileNotFoundException {
+    public static void xoaMonAn () throws InterruptedException, FileNotFoundException {
         System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||            BẠN CẦN XOÁ MÓN NÀO?     ||");
         System.out.println("||-------------------------------------||");
         System.out.printf("%2s.%5s%10s%5s%10s","STT","BÀN","TÊN","SL","TỔNG");
-        for(int i = 0; i < listFoods.size(); i++) {
-            System.out.printf("\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
+        for( int i = 0; i < listFoods.size(); i++ ) {
+            System.out.printf( "\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice() );
             System.out.println("\n");
         }
-        System.out.println("||                           0. _ <--< _ ||");
+        System.out.println("||                           0. _ <--< _||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
 //        xoá món ăn trong danh sách chọn
-        System.out.print("lựa chọn: ");
+        System.out.print( "lựa chọn: " );
         int luaChon = (int) checkInteger(1,listFoods.size());
         listFoods.remove(luaChon - 1);
-//        hoaDonTamTinh();
-        hoaDonTamTinhRestaurant();
-        luaChonThanhToan();
+        hoaDonTamTinhRestaurant ();
+        luaChonThanhToan ();
     }
 
     public static void hoaDonTamTinhRestaurant() throws FileNotFoundException, InterruptedException {
         if(listFoods.size() == 0) {
-            System.out.println(ANSI_RED + "\nDanh sách trống." + ANSI_RESET);
+            System.out.println( ANSI_RED + "\nDanh sách trống." + ANSI_RESET );
         }else {
             int totalPrice = 0;
-            System.out.println(ANSI_BLUE + "\n------------HOÁ ĐƠN TẠM TÍNH-------------" + ANSI_RESET);
-            System.out.printf("%2s.%5s%10s%5s%10s","STT","BÀN","TÊN","SL","TỔNG");
+            System.out.println( ANSI_BLUE + "\n------------HOÁ ĐƠN TẠM TÍNH-------------" + ANSI_RESET );
+            System.out.printf( "%2s.%5s%10s%5s%10s","STT","BÀN","TÊN","SL","TỔNG" );
             for(int i = 0; i < listFoods.size(); i++) {
-                System.out.printf("\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
+                System.out.printf( "\n%2d.%5s%10s%5d%10d",i+1,listFoods.get(i).getId(),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice() );
                 System.out.println("\n");
             }
-            for(FoodsObj o : listFoods) {
-                totalPrice += o.getPrice();
+            for(FoodsObj o : listFoods ) {
+                totalPrice += o.getPrice ();
             }
-            System.out.println("\nTotal: " + totalPrice + " k");
-            System.out.println("Thời gian: " + java.time.LocalDateTime.now());
+            System.out.println( "\nTotal: " + totalPrice + " k" );
+            System.out.println( "Thời gian: " + java.time.LocalDateTime.now() );
             System.out.println("-----------------------------------------");
-            luaChonThanhToan();
+            luaChonThanhToan ();
 
         }
     }

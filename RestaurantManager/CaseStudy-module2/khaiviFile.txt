@@ -1,3 +1,2 @@
-Rau muốn,30
-Đậu hũ,25
-Dưa leo,20
+dua,15
+banh ,20
