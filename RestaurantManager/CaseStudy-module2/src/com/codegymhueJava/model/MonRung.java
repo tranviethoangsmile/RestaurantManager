@@ -3,6 +3,7 @@ package com.codegymhueJava.model;
 public class MonRung {
     private String name;
     private int price;
+    private int quantity;
 
     public MonRung() {
     }
@@ -10,6 +11,12 @@ public class MonRung {
     public MonRung(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public MonRung(String name, int price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -27,9 +34,22 @@ public class MonRung {
     public void setPrice(int price) {
         this.price = price;
     }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
 
     @Override
     public String toString() {
-        return name + "," + price;
+        return name + "," + price + "," + quantity ;
     }
+
+
+//    public String toStringQuality() {
+//        return name + "," + price + "," + quantity;
+//    }
 }

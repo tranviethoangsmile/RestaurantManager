@@ -1,3 +1,3 @@
-bia,25
-nuoc ngot,20
-nuoc loc,10
+tuoi song,150,10
+lau de,250,10
+lau ga,200,10

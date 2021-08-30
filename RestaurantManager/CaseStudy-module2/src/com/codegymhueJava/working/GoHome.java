@@ -95,7 +95,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println(ANSI_WHITE + "\n----------HOÁ ĐƠN THANH TOÁN------------");
         System.out.printf("\n%2s.%15s%10s%10s","STT","TÊN","SL","TỔNG");
         for(int i = 0; i < listFoods.size(); i++) {
-            System.out.printf("\n%2d.%15s%10d%10d",i+1,listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
+            System.out.printf("\n%2d.%15s%10d%10d",(i+1),listFoods.get(i).getName(),listFoods.get(i).getQuantity(),listFoods.get(i).getPrice());
             System.out.println("\n");
         }
         for(FoodsObj o : listFoods) {
@@ -106,7 +106,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("Thời gian: " + date);
         System.out.println(ANSI_BLUE+"CẢM ƠN QUÝ KHÁCH"+ANSI_RESET);
         System.out.println("-----------------------------------------");
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
         String time = formatter.format(date);
         listDoanhThu.add(new DoanhThu(totalPrice,time));
 //        ghi dữ liệu doanh thu vào file.
@@ -790,7 +790,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }else {
             for(MonKhaiVi kv : monKhaiVi)
             {
-                System.out.printf("\n%20s%10d",kv.getName(),kv.getPrice());
+                System.out.printf("\n%20s%10d%10d",kv.getName(),kv.getPrice(),kv.getQuantity());
             }
         }
 
@@ -803,7 +803,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 
             for (MonHaiSan hs: monHaiSan)
             {
-                System.out.printf("\n%20s%10d",hs.getName(),hs.getPrice());
+                System.out.printf("\n%20s%10d%10d",hs.getName(),hs.getPrice(),hs.getQuantity());
             }
         }
 
@@ -815,7 +815,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }else {
 
             for (MonRung mr : monRung) {
-                System.out.printf("\n%20s%10d",mr.getName(),mr.getPrice());
+                System.out.printf("\n%20s%10d%10d",mr.getName(),mr.getPrice(),mr.getQuantity());
             }
         }
 
@@ -827,7 +827,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }else {
 
             for (MonLau ml : lau) {
-                System.out.printf("\n%20s%10d",ml.getName(),ml.getPrice());
+                System.out.printf("\n%20s%10d%10d",ml.getName(),ml.getPrice(),ml.getQuantity());
             }
         }
 
@@ -839,7 +839,7 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         }else {
 
             for (DoUong du : douong) {
-                System.out.printf("\n%20s%10d",du.getName(),du.getPrice());
+                System.out.printf("\n%20s%10d%10d",du.getName(),du.getPrice(),du.getQuantity());
             }
         }
             System.out.println("\n");
@@ -850,8 +850,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         ReadFileDoanhThu dt = new ReadFileDoanhThu();
     List<DoanhThu> listDoanhThu = ReadFileDoanhThu.readDoanhThu();
     int total = 0;
-        System.out.printf("%20s%20s","Tiền","Ngày");
-        System.out.println("\n-------------------------------------------");
+        System.out.printf("%20s%24s","Ngày","Tiền");
+        System.out.println("\n-----------------------------------------------");
     for(DoanhThu o : listDoanhThu) {
         System.out.printf("\n|%20s |%20sk |",o.getTime(),o.getTotalPrice());
     }
@@ -877,8 +877,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
 //        xoá món ăn trong danh sách chọn
             System.out.print("lựa chọn: ");
-            int luaChon = (int) checkInteger(1,listFoods.size());
-            listFoods.remove(luaChon - 1);
+            int luaChon = (int) checkInteger(0,listFoods.size());
+            if(luaChon == 0) {
+                hoaDonTamTinh();
+            }else {
+                listFoods.remove(luaChon - 1);
+            }
+
         hoaDonTamTinh();
         luaChonThanhToan();
     }
@@ -915,6 +920,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             System.out.print("Nhập giá: ");
                             int newPrice = (int) checkInteger(0,1000);
                             khaiVi.setPrice(newPrice);
+                            System.out.print("Nhập số lượng: ");
+                            khaiVi.setQuantity(1000);
                             WriteFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
                         }
                     }
@@ -931,6 +938,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             System.out.print("Nhập giá: ");
                             int newPrice = (int) checkInteger(0,1000);
                             haiSan.setPrice(newPrice);
+                            System.out.print("Nhập số lượng: ");
+                            haiSan.setQuantity(1000);
                             WriteFileHaiSan.writeToFileHaiSan(monHaiSan);
                         }
                     }
@@ -947,6 +956,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             System.out.println("Nhập giá: ");
                             int newPrice = (int) checkInteger(0, 1000);
                             mr.setPrice(newPrice);
+                            System.out.print("Nhập số lượng: ");
+                            mr.setQuantity(1000);
                             WriteFileMonRung.writeToFileMonRung(monRung);
                         }
                     }
@@ -963,6 +974,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             System.out.println("Nhập giá: ");
                             int newPrice = (int) checkInteger(0, 1000);
                             monLau.setPrice(newPrice);
+                            System.out.print("Nhập số lượng: ");
+                            monLau.setQuantity(1000);
                             WriteFileMonLau.writeFileMonLau(lau);
                         }
                     }
@@ -979,6 +992,8 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                             System.out.println("Nhập giá: ");
                             int newPrice = (int) checkInteger(0, 1000);
                             doU.setPrice(newPrice);
+                            System.out.print("Nhập số lượng: ");
+                            doU.setQuantity(1000);
                             WriteFileDoUong.writeToFileDoUong(douong);
                         }
                     }
@@ -1011,11 +1026,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int n = (int) checkInteger(1,3);
                     for(int i = 0; i < n; i++ ){
-                        System.out.print("Món " + i + 1 + ": " );
+                        System.out.print("Món " + (i + 1) + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
-                        monKhaiVi.add(new MonKhaiVi(name,price));
+                        System.out.print("số lượng : ");
+                        int quantity = (int) checkInteger(0,1000);
+                        monKhaiVi.add(new MonKhaiVi(name,price,quantity));
                     }
                     WriteFileKhaiVi.writeToFileKhaiVi(monKhaiVi);
                     break;
@@ -1023,11 +1040,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int m = (int) checkInteger(1,3);
                     for(int i = 0; i < m; i++ ){
-                        System.out.print("Món " + i + 1 + ": " );
+                        System.out.print("Món " + (i + 1) + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
-                        listHaiSan.add(new MonHaiSan(name,price));
+                        System.out.print("số lượng : ");
+                        int quantity = (int) checkInteger(0,1000);
+                        listHaiSan.add(new MonHaiSan(name,price,quantity));
                     }
                     WriteFileHaiSan.writeToFileHaiSan(listHaiSan);
                     break;
@@ -1035,11 +1054,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int k = (int) checkInteger(1,3);
                     for(int i = 0; i < k; i++ ){
-                        System.out.print("Món " + i + 1 + ": " );
+                        System.out.print("Món " +( i + 1) + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
-                        listMonRung.add(new MonRung(name,price));
+                        System.out.print("số lượng : ");
+                        int quantity = (int) checkInteger(0,1000);
+                        listMonRung.add(new MonRung(name,price,quantity));
                     }
                     WriteFileMonRung.writeToFileMonRung(listMonRung);
                     break;
@@ -1047,11 +1068,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int h = (int) checkInteger(1,3);
                     for(int i = 0; i < h; i++ ){
-                        System.out.print("Món " + i + 1 + ": " );
+                        System.out.print("Món " +( i + 1 )+ ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
-                        listMonLau.add(new MonLau(name,price));
+                        System.out.print("số lượng : ");
+                        int quantity = (int) checkInteger(0,1000);
+                        listMonLau.add(new MonLau(name,price,quantity));
                     }
                     WriteFileMonLau.writeFileMonLau(listMonLau);
                     break;
@@ -1059,13 +1082,15 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                     System.out.print("Nhập số món: ");
                     int e = (int) checkInteger(1,3);
                     for(int i = 0; i < e; i++ ){
-                        System.out.print("Món " + i + 1 + ": " );
+                        System.out.print("Món " + (i + 1) + ": " );
                         String name = check.checkString();
                         System.out.print("Giá: " );
                         int price = (int) checkInteger(0,1000);
-                        listDoUong.add(new DoUong(name,price));
+                        System.out.print("số lượng : ");
+                        int quantity = (int) checkInteger(0,1000);
+                        listDoUong.add(new DoUong(name,price,quantity));
                     }
-                    WriteFileMonLau.writeFileMonLau(listDoUong);
+                    WriteFileDoUong.writeToFileDoUong(listDoUong);
                     break;
             }
         }while (selectThemMon != 0);

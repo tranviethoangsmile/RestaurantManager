@@ -2,7 +2,7 @@ package com.codegymhueJava.Thread;
 
 public class ThreadGoodBye extends Thread{
     public static final String ANSI_BLUE = "\u001B[34m";
-    String [] bye = {"C","H","À","O"," ","T","Ạ","M"," ","B","I","Ệ","T "," ","Q","U","Ý"," ","K","H","Á","C","H"," ","H","Ẹ","N"," ","G","Ặ","P"," ","L","Ạ","I","."};
+    String [] bye = {"C","H","À","O"," ","T","Ạ","M"," ","B","I","Ệ","T"," ","Q","U","Ý"," ","K","H","Á","C","H"," ","H","Ẹ","N"," ","G","Ặ","P"," ","L","Ạ","I","."};
     int byeLength = bye.length;
 
     public void run() {

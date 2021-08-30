@@ -24,7 +24,8 @@ public class ReadFile {
                 String [] khaiviTXT = line.split(",");
                 String name = khaiviTXT[0];
                 int price = Integer.parseInt(khaiviTXT[1]);
-                khaiVi.add(new MonKhaiVi(name,price));
+                int quantity = Integer.parseInt(khaiviTXT[2]);
+                khaiVi.add(new MonKhaiVi(name,price,quantity));
             }
 
 
@@ -50,7 +51,8 @@ public class ReadFile {
                 String [] haiSanTXT = line.split(",");
                 String name = haiSanTXT[0];
                 int price = Integer.parseInt(haiSanTXT[1]);
-                haiSan.add(new MonHaiSan(name,price));
+                int quantity = Integer.parseInt(haiSanTXT[2]);
+                haiSan.add(new MonHaiSan(name,price,quantity));
             }
 
 
@@ -77,7 +79,8 @@ public class ReadFile {
                 String [] monRungTXT = line.split(",");
                 String name = monRungTXT[0];
                 int price = Integer.parseInt(monRungTXT[1]);
-                monRung.add(new MonRung(name,price));
+                int quantity = Integer.parseInt(monRungTXT[2]);
+                monRung.add(new MonRung(name,price,quantity));
             }
 
 
@@ -103,7 +106,8 @@ public class ReadFile {
                 String [] monLauTXT = line.split(",");
                 String name = monLauTXT[0];
                 int price = Integer.parseInt(monLauTXT[1]);
-                monLau.add(new MonLau(name,price));
+                int quantity = Integer.parseInt(monLauTXT[2]);
+                monLau.add(new MonLau(name,price,quantity));
             }
 
 
@@ -129,7 +133,8 @@ public class ReadFile {
                 String [] doUongTXT = line.split(",");
                 String name = doUongTXT[0];
                 int price = Integer.parseInt(doUongTXT[1]);
-                doUong.add(new DoUong(name,price));
+                int quantity = Integer.parseInt(doUongTXT[2]);
+                doUong.add(new DoUong(name,price,quantity));
             }
 
 
