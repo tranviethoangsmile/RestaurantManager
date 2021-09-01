@@ -22,7 +22,7 @@ public class Sale extends Thread {
         for(int i = 0; i < leng; i++) {
             System.out.print(ANSI_CYAN  + sale.get(i) + " " + ANSI_RESET);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,0 +1,4 @@
+              dau hu         1        30
+            rau muon         1        30
+            nuoc loc         2        60
+                 bia         3        90

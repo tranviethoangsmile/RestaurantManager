@@ -439,16 +439,20 @@ public class Restaurant {
         System.out.println("||     1. CÓ                           ||");
         System.out.println("||     2. KHÔNG                        ||");
         System.out.println("||                                     ||");
+        System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
             System.out.print("chọn: ");
-            int chon = (int) checkInteger(1,2);
+            int chon = (int) checkInteger(0,2);
             switch (chon) {
                 case 1 :
                     xoaMonAn();
                     break;
                 case 2 :
                     inHoaDon ();
+                    break;
+                case 0 :
+                    menu();
                     break;
             }
         }
