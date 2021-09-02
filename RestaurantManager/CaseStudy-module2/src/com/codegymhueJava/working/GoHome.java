@@ -495,12 +495,11 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println(ANSI_BLUE + "\n|||||||||||||||||||||||||||||||||||||||||");
         System.out.println("||     1. ĐĂNG NHẬP                    ||");
         System.out.println("||     2. KHÁCH HÀNG                   ||");
-        System.out.println("||     3. ĐĂNG KÝ                      ||");
         System.out.println("||                           0. _Thoát_||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         while (true) {
             System.out.print(ANSI_YELLOW + "Chọn: ");
-            int select = (int) checkInteger(0,3);
+            int select = (int) checkInteger(0,2);
             switch (select)
             {
                 case 0 :
@@ -539,30 +538,10 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
 //                    CHUYỂN HƯỚNG ĐẾN CHỌN CÁCH DÙNG BỮA
                     cachDungBua();
                     break;
-                case 3 :
+//                case 3 :
+//
+////                    ĐĂNG KÍ
 
-//                    ĐĂNG KÍ
-                    boolean checkpas = false;
-                    System.out.print("Nhập tên: ");
-                    String adminName = check.checkString();
-                    System.out.print("Mật khẩu: ");
-                    String password = check.checkString();
-                        System.out.print("Nhập lại mật khẩu: ");
-                        String rePassword = check.checkString();
-                    if(password.equals(rePassword)) {
-                        checkpas = true;
-                    }else {
-                        checkpas = false;
-                    }
-                    if(checkpas) {
-                        listAdmin.add(new Admin(adminName,password));
-                        WriteFileAdmin.writeToFileAdmin(listAdmin);
-                        System.out.println(ANSI_WHITE + "Đăng kí thành công.");
-                        break;
-                    }else {
-                        System.out.println("Mật khẩu không giống. Vui lòng kiểm tra lại...");
-                        begin ();
-                    }
             }
         }
     }
@@ -578,12 +557,13 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
         System.out.println("||     5. THIẾT LẬP BÀN                ||");
         System.out.println("||     6. QUẢN LÝ DANH SÁCH NHÂN VIÊN  ||");
         System.out.println("||     7. THIẾT LẬP QUẢNG CÁO          ||");
+        System.out.println("||     8. ĐĂNG KÍ NHÂN VIÊN MỚI        ||");
         System.out.println("||                           0. _<--<_ ||");
         System.out.println("|||||||||||||||||||||||||||||||||||||||||");
         int select;
         do {
             System.out.print(ANSI_YELLOW + "Chọn: ");
-             select = (int) checkInteger(0,7);
+             select = (int) checkInteger(0,8);
             switch (select)
             {
                 case 0 :
@@ -652,10 +632,37 @@ import static com.codegymhueJava.service.CheckInput.checkInteger;
                 case 7 :
                     thietLapQuangCao ();
                     break;
+                case 8 :
+                    dangKiNhanVienMoi ();
+                    break;
 
             }
         }while(select != 0);
     }
+
+        private static void dangKiNhanVienMoi() throws FileNotFoundException, InterruptedException {
+            boolean checkpas = false;
+            System.out.print("Nhập tên: ");
+            String adminName = check.checkString();
+            System.out.print("Mật khẩu: ");
+            String password = check.checkString();
+            System.out.print("Nhập lại mật khẩu: ");
+            String rePassword = check.checkString();
+            if(password.equals(rePassword)) {
+                checkpas = true;
+            }else {
+                checkpas = false;
+            }
+            if(checkpas) {
+                listAdmin.add(new Admin(adminName,password));
+                WriteFileAdmin.writeToFileAdmin(listAdmin);
+                System.out.println(ANSI_WHITE + "Đăng kí thành công.");
+                begin ();
+            }else {
+                System.out.println("Mật khẩu không giống. Vui lòng kiểm tra lại...");
+                dangKiNhanVienMoi();
+            }
+        }
 
         private static void thietLapQuangCao() throws FileNotFoundException, InterruptedException {
             System.out.print("số chữ: ");
